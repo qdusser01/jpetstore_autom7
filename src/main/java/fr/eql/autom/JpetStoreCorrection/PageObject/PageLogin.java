@@ -1,5 +1,5 @@
 package fr.eql.autom.JpetStoreCorrection.PageObject;
 
-public class PageLogin {
+public class PageLogin extends BandeauMenu {
 
 }
