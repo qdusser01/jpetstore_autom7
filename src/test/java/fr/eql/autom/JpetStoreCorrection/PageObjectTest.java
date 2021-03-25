@@ -10,11 +10,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import fr.eql.autom.JpetStoreCorrection.PageObject.BandeauMenu;
+import fr.eql.autom.JpetStoreCorrection.PageObject.PageAccueil;
 import fr.eql.autom.JpetStoreCorrection.PageObject.PageIndex;
 import fr.eql.autom.JpetStoreCorrection.PageObject.PageLogin;
 
 public class PageObjectTest extends AbstractTest {
 
+	private String username = "j2ee";
+	private String password = "j2ee";
+	
 	@Before
 	public void setup() {
 		selectBrowser(browser);
@@ -31,6 +35,7 @@ public class PageObjectTest extends AbstractTest {
 
 		// PageLogin
 		// Je me logue
+		PageAccueil page_accueil = page_login.signIn(driver, username, password);
 
 		// PageAccueil
 		// Verification --> Je suis loggué (Wel
