@@ -15,6 +15,7 @@ import fr.eql.autom.JpetStoreCorrection.PageObject.PageAccueil;
 import fr.eql.autom.JpetStoreCorrection.PageObject.PageCategory;
 import fr.eql.autom.JpetStoreCorrection.PageObject.PageIndex;
 import fr.eql.autom.JpetStoreCorrection.PageObject.PageLogin;
+import fr.eql.autom.JpetStoreCorrection.PageObject.PageProduct;
 
 public class PageObjectTest extends AbstractTest {
 
@@ -22,6 +23,8 @@ public class PageObjectTest extends AbstractTest {
 	private String password = "j2ee";
 	private String actualMessage;
 	private String expectedMessage = "Welcome ABC!";
+	private String idProduct = "FI-SW-01";
+	private String excpectedTitle = "Fish";
 
 	@Before
 	public void setup() {
@@ -51,11 +54,14 @@ public class PageObjectTest extends AbstractTest {
 		PageCategory page_category = page_accueil.clicFish(driver);
 
 		// PageCategory
+		
+		
 		// Vérification --> Categorie fish
-
+		Assert.assertEquals(excpectedTitle,page_category.getTitleCategory());
 		// Selectionner le produit
-
+		PageProduct page_product = page_category.selectProduct(driver, idProduct);
 		// PageProduct
+		
 		// Ajouter le produit au panier
 
 		// PageShoppingCart
