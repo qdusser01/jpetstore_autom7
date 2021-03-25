@@ -85,13 +85,10 @@ public class PageObjectTest extends AbstractTest {
 		priceUnit = priceUnit.substring(1);
 		priceTotal = priceTotal.substring(1);
 		
-		// On remplace la virgule par un point
-		priceUnit = priceUnit.replace(",", ".");
-		priceTotal = priceTotal.replace(",", ".");
 		
 		// On convertit le string en double
-		double d_priceTotal = Double.parseDouble(priceTotal);
-		double d_priceUnit = Double.parseDouble(priceUnit);
+		double d_priceTotal = ToolBox.parseStringToDouble(priceTotal);
+		double d_priceUnit = ToolBox.parseStringToDouble(priceUnit);
 		
 		// Vérification --> le prix total est égal à deux fois le prix unitaire
 		double sumExpected = 2 * d_priceUnit;

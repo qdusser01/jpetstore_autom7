@@ -3,6 +3,8 @@ package fr.eql.autom.JpetStoreCorrection.PageObject;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import fr.eql.autom.JpetStoreCorrection.ToolBox;
+
 public class PageShoppingCart extends BandeauMenu {
 	@FindBy(tagName = "h2")
 	private WebElement title;
@@ -29,8 +31,7 @@ public class PageShoppingCart extends BandeauMenu {
 	
 	
 	public void modifyQuantity(String quantity) {
-		quantityField.clear();
-		quantityField.sendKeys(quantity);
+		ToolBox.fillInput(quantityField, quantity);
 	}
 	
  

@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import fr.eql.autom.JpetStoreCorrection.ToolBox;
+
 public class PageLogin extends BandeauMenu {
 
 	@FindBy (name = "username")
@@ -18,11 +20,9 @@ public class PageLogin extends BandeauMenu {
 	
 	public PageAccueil signIn(WebDriver driver, String username, String password) {
 		
-		usernameField.clear();
-		usernameField.sendKeys(username);
-		
-		passwordField.clear();
-		passwordField.sendKeys(password);
+		ToolBox.fillInput(usernameField, username);
+
+		ToolBox.fillInput(passwordField, password);
 		
 		loginButton.click();
 		
