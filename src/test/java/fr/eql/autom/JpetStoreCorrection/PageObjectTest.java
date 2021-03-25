@@ -1,30 +1,29 @@
 package fr.eql.autom.JpetStoreCorrection;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
-import fr.eql.autom.JpetStoreCorrection.PageObject.BandeauMenu;
 import fr.eql.autom.JpetStoreCorrection.PageObject.PageAccueil;
 import fr.eql.autom.JpetStoreCorrection.PageObject.PageCategory;
 import fr.eql.autom.JpetStoreCorrection.PageObject.PageIndex;
 import fr.eql.autom.JpetStoreCorrection.PageObject.PageLogin;
 import fr.eql.autom.JpetStoreCorrection.PageObject.PageProduct;
+import fr.eql.autom.JpetStoreCorrection.PageObject.PageShoppingCart;
 
 public class PageObjectTest extends AbstractTest {
 
 	private String username = "j2ee";
 	private String password = "j2ee";
 	private String actualMessage;
+	private String actualCartTitle;
 	private String expectedMessage = "Welcome ABC!";
 	private String idProduct = "FI-SW-01";
 	private String excpectedTitle = "Fish";
+	private String expectedCartTitle = "Shopping Cart";
+	private String item = "EST-1";
 
 	@Before
 	public void setup() {
@@ -47,25 +46,28 @@ public class PageObjectTest extends AbstractTest {
 		// PageAccueil
 		// Verification --> Je suis loggué (Welcome Message)
 		actualMessage = page_accueil.getWelcomeMessage();
-		Assert.assertEquals("Le message de bienvenu ne correspond pas au message attendu" ,expectedMessage,  actualMessage);
-
+		Assert.assertEquals("Le message de bienvenu ne correspond pas au message attendu", expectedMessage,
+				actualMessage);
 
 		// Cliquer sur l'image du 'Fish'
 		PageCategory page_category = page_accueil.clicFish(driver);
 
 		// PageCategory
-		
-		
+
 		// Vérification --> Categorie fish
-		Assert.assertEquals(excpectedTitle,page_category.getTitleCategory());
+		Assert.assertEquals(excpectedTitle, page_category.getTitleCategory());
 		// Selectionner le produit
 		PageProduct page_product = page_category.selectProduct(driver, idProduct);
 		// PageProduct
-		
+
 		// Ajouter le produit au panier
+		PageShoppingCart page_shopping_cart = page_product.addItemToCart(driver, item);
 
 		// PageShoppingCart
+
 		// Vérifier que le panier est affiché
+		actualCartTitle = page_shopping_cart.getTitle().getText();
+		Assert.assertEquals("Titre incorrect", expectedCartTitle, actualCartTitle);
 
 		// Modifie la quantité de produits à 2
 
