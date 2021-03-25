@@ -1,5 +1,7 @@
 package fr.eql.autom.JpetStoreCorrection;
 
+import static org.junit.Assert.assertTrue;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -24,6 +26,7 @@ public class PageObjectTest extends AbstractTest {
 	private String excpectedTitle = "Fish";
 	private String expectedCartTitle = "Shopping Cart";
 	private String item = "EST-1";
+	
 
 	@Before
 	public void setup() {
@@ -66,22 +69,33 @@ public class PageObjectTest extends AbstractTest {
 		// PageShoppingCart
 
 		// Vérifier que le panier est affiché
-		actualCartTitle = page_shopping_cart.getTitle().getText();
+		actualCartTitle = page_shopping_cart.getTitle().getText(); 
 		Assert.assertEquals("Titre incorrect", expectedCartTitle, actualCartTitle);
 
 		// Modifie la quantité de produits à 2
-
+		page_shopping_cart.modifyQuantity("2"); 
 		// On update le panier
-
-		// On récupère le prix unitaire et total
-
+		page_shopping_cart.clickUpdateCart();
+		
+		// On recupere le prix unitaire et total
+		String priceUnit = page_shopping_cart.getPriceUnit();
+		String priceTotal = page_shopping_cart.getPriceTotal();
+		
 		// On modifie nos variables en supprimant le dollar
-
+		priceUnit = priceUnit.substring(1);
+		priceTotal = priceTotal.substring(1);
+		
 		// On remplace la virgule par un point
-
+		priceUnit = priceUnit.replace(",", ".");
+		priceTotal = priceTotal.replace(",", ".");
+		
 		// On convertit le string en double
-
+		double d_priceTotal = Double.parseDouble(priceTotal);
+		double d_priceUnit = Double.parseDouble(priceUnit);
+		
 		// Vérification --> le prix total est égal à deux fois le prix unitaire
+		double sumExpected = 2 * d_priceUnit;
+		assertTrue(sumExpected == d_priceTotal);
 	}
 
 	@After

@@ -10,8 +10,25 @@ public class PageShoppingCart extends BandeauMenu {
 	@FindBy (name = "EST-1")
 	WebElement quantityField;
 	
+	@FindBy (name="update") WebElement updateCartButton;
+	@FindBy (xpath = "//td[contains(text(), '$')][1]") private WebElement priceUnit;
+	@FindBy (xpath = "//td[contains(text(), '$')][2]") private WebElement priceTotal;
 	
-	public void ModifyQuantity(String quantity) {
+	
+	public String getPriceUnit() {
+		return priceUnit.getText();
+	}
+	
+	public String getPriceTotal() {
+		return priceTotal.getText();
+	}
+	
+	public void clickUpdateCart() {
+		updateCartButton.click();		
+	}
+	
+	
+	public void modifyQuantity(String quantity) {
 		quantityField.clear();
 		quantityField.sendKeys(quantity);
 	}
