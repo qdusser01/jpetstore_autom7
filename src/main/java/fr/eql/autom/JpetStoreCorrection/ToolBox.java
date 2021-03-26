@@ -12,11 +12,11 @@ public class ToolBox {
 	public static double parseStringToDouble(String s) {
 		return Double.parseDouble(s.replace(",", "."));
 	}
-
-	public static void selectCheckbox(WebElement checkbox) {
-		if (!checkbox.isSelected()) {
+	
+	public static void selectCheckBox(WebElement checkbox) {
+		if(!checkbox.isSelected()) {
 			checkbox.click();
-		}
+		}	
 	}
 
 	public static void unselectCheckbox(WebElement checkbox) {
