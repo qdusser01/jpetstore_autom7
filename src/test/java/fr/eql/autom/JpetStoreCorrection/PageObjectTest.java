@@ -6,6 +6,7 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import fr.eql.autom.JpetStoreCorrection.PageObject.PageAccueil;
@@ -13,6 +14,7 @@ import fr.eql.autom.JpetStoreCorrection.PageObject.PageCategory;
 import fr.eql.autom.JpetStoreCorrection.PageObject.PageIndex;
 import fr.eql.autom.JpetStoreCorrection.PageObject.PageLogin;
 import fr.eql.autom.JpetStoreCorrection.PageObject.PageProduct;
+import fr.eql.autom.JpetStoreCorrection.PageObject.PageSearch;
 import fr.eql.autom.JpetStoreCorrection.PageObject.PageShoppingCart;
 
 public class PageObjectTest extends AbstractTest {
@@ -93,6 +95,7 @@ public class PageObjectTest extends AbstractTest {
 		// Vérification --> le prix total est égal à deux fois le prix unitaire
 		double sumExpected = 2 * d_priceUnit;
 		assertTrue(sumExpected == d_priceTotal);
+		
 	}
 
 	@After
